@@ -2,15 +2,12 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { ContextProvider } from './Provider';
 
-interface ImageProps
-  extends Omit<
-    React.ImgHTMLAttributes<HTMLImageElement>,
-    'srcSet' | 'sizes' | 'src'
-  > {
+interface ResponsiveImageProps {
   src: string;
+  children: React.ReactElement<HTMLImageElement>;
 }
 
-const Image: React.FC<ImageProps> = ({ src, ...props }) => {
+const ResponsiveImage = ({ src, children }: ResponsiveImageProps) => {
   const ctx = React.useContext(ContextProvider);
 
   if (!ctx) {
@@ -37,13 +34,13 @@ const Image: React.FC<ImageProps> = ({ src, ...props }) => {
       {variants.map((v, i) => (
         <source key={i} srcSet={v.srcSet} media={`(min-width: ${v.width}px)`} />
       ))}
-      <img src={_smallest?.src ?? src} {...props} />
+      {React.cloneElement(children, { src: _smallest?.src ?? src })}
     </picture>
   );
 };
 
-Image.propTypes = {
+ResponsiveImage.propTypes = {
   src: propTypes.string.isRequired,
 };
 
-export default Image;
+export default ResponsiveImage;

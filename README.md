@@ -15,12 +15,14 @@ npm install @adeyahya/rrp --save
 ```tsx
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Provider, Image } from '@adeyahya/rrp';
+import { Provider, ResponsiveImage } from '../.';
 
 const App = () => {
   return (
     <Provider>
-      <Image src="https://res.cloudinary.com/dt2mntbmf/image/upload/v1597818712/image-20200819133002593_qqtn6b.png" />
+      <ResponsiveImage src="https://res.cloudinary.com/dt2mntbmf/image/upload/v1597818712/image-20200819133002593_qqtn6b.png">
+        <img width="100%" />
+      </ResponsiveImage>
     </Provider>
   );
 };
