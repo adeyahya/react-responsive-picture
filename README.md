@@ -1,4 +1,4 @@
-# React Responsive Image
+# React Responsive Picture
 
 ## Installation
 
